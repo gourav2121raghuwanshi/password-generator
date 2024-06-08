@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator </title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            height: 2rem;
+            width: 2rem;
+            /* z-index: 1; */
+            position: relative;
+            border-radius: 50%;
+            background-color: yellow;
+            cursor: pointer;
+            margin-top: -3px;
+            box-shadow: 0px 0px 20px 0px rgb(132, 129, 129);
+        }
+
+        .slider:focus {
+            outline: 3px solid rgba(255, 255, 0, 0.837);
+        }
+
+        .slider::-webkit-slider-thumb {
+            outline: 2px solid yellow;
+            background-color: rgba(238, 130, 238, 0.782);
+            box-shadow: 1px 2px solid;
+        }
+
+        .check input:checked {
+            background-color: aqua;
+        }
+
+        .display::placeholder {
+            position: absolute;
+            top: 0%;
+            left: 1.5rem;
+            font-size: 1.5rem;
+            line-height: 30px;
+            color: yellow;
+            opacity: .65;
+            text-transform: uppercase;
+        }
+
+        .check input:checked::before {
+            content: '✔';
+            position: absolute;
+            color: var(--dk-text);
+            font-size: 1.05rem;
+            left: 50%;
+            top: -3.5px;
+            transform: translateX(-48%);
+        }
+    </style>
+</head>
+
+<body
+    class=" h-[100vh] w-[100vw] flex flex-col justify-center items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 overflow-hidden">
+    <div class="container w-[90%] max-w-[450px]  ">
+        <div>
+            <h1 class="uppercase text-white leading-[1.2rem] tracking-[2px] font-extrabold text-[28px]  text-center">
+                Password Generator</h1>
+            <div
+                class="display-container   max-h-[100px] min-h-[50px]  w-[100%]  relative bg-violet-900 rounded-xl border-b-[0.35rem] mt-[1rem] mb-[1rem] ml-0 mr- pt-[0.35rem] border-violet-400">
+                <input readonly placeholder="Password"
+                    class=" display absolute w-[100%]  bg-transparent outline-none border-none   text-yellow-300 text-[1.5rem] font-bold leading-[30px]  tracking-[1px] "
+                    data-PasswordDisplay>
+                <button data-copy class="absolute top-[50%] right-[1.5rem] translate-y-[-50%]">
+                    <span data-copyMsg></span>
+                    <img src="./password-generator/password-generator/copy.svg" height="30px" width="30px" alt="">
+                </button>
+            </div>
+            <!-- input container -->
+            <div class="check input-container rounded-2xl text-white  bg-violet-900 p-4 gap-3">
+                <div class="length-container flex mb-2 flex-row justify-between ">
+                    <p class="font-bold text-[19px]">Password Length</p>
+                    <p data-lengthNumber class="font-extrabold text-yellow-300">0</p>
+                </div>
+
+                <!-- slider -->
+                <div>
+                    <input type="range" min="1" max="20" step="1"
+                        class="slider  appearance-none w-[100%] h-[0.75rem]  rounded-lg mt-2 mb-2  cursor-pointer bg-violet-500  "
+                        data-lengthSlider>
+
+                </div>
+                <!-- CheckBoxes -->
+                <div class=" flex items-center mt-[1rem] mb-[1rem ] mr-0 ml-0 gap-x-[1rem] ">
+                    <input
+                        class="appearance-none w-[20px] h-[20px] border-solid cursor-pointer relative rounded border-[0.1rem] border-blue-400 "
+                        type="checkbox" id="uppercase">
+                    <label for="uppercase">Include Uppercase Letters</label>
+                </div>
+                <div class=" flex items-center mt-[1rem] mb-[1rem ] mr-0 ml-0 gap-x-[1rem] ">
+                    <input
+                        class="appearance-none w-[20px] h-[20px] border-solid cursor-pointer relative rounded border-[0.1rem] border-blue-400 "
+                        type="checkbox" id="lowercase">
+                    <label for="lowercase">Include Lowercase Letters</label>
+                </div>
+                <div class=" flex items-center mt-[1rem] mb-[1rem ] mr-0 ml-0 gap-x-[1rem] ">
+                    <input
+                        class="appearance-none w-[20px] h-[20px] border-solid cursor-pointer relative rounded border-[0.1rem] border-blue-400 "
+                        type="checkbox" id="symbols">
+                    <label for="numbers"> Include Symbols</label>
+                </div>
+                <div class=" flex items-center mt-[1rem] mb-[1rem ] mr-0 ml-0 gap-x-[1rem] ">
+                    <input
+                        class="appearance-none w-[20px] h-[20px] border-solid cursor-pointer relative rounded border-[0.1rem] border-blue-400 "
+                        type="checkbox" id="numbers">
+                    <label for="symbols">Include Numbers</label>
+                </div>
+                <!-- Strength Container -->
+                <div class="strength-container flex justify-between">
+                    <p class="font-bold m-3 text-[19px]">Strength</p>
+                    <div data-indicator class=" h-[20px]   w-[20px] rounded-[50%] shadow-md bg-gray-500"></div>
+                </div>
+                <!-- generate password -->
+                <button
+                    class="generateButton uppercase border-b-[0.35rem] border-yellow-300 font-extrabold mt-3 text-yellow-500 bg-purple-600 w-[100%] h-[36px] rounded-xl">Generate
+                    Password</button>
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
